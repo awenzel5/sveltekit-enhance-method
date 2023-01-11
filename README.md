@@ -1,0 +1,3 @@
+# use:enhance breaks hot module reload when there's an input named method
+
+This repository has 2 very simple pages each with a form. On the home page everything works as expected. On `/method` we have a form who has an input named `"method"`. This throws an error in the browser's development console : `use:enhance can only be used on <form> fields with method="POST"` even though it is a form that has the method set to POST. The issue lies in the input being names "method" as well. This breaks hot module reload and hangs client side routing in development. The pages build just fine and everything runs smoothly in preview. This seems to be coming from the check on line 29 in `@sveltejs/kit/src/runtime/app/forms.js`
